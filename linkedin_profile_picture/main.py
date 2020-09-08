@@ -43,14 +43,18 @@ class ProfilePicture(object):
             pic_url = i.get("link","")
             thumbnail = i.get("image",{}).get("thumbnailLink","")
             context_url = i.get("image",{}).get("contextLink","")
+            linkedin_id = self.clean_id(context_url)
 
-            if self._check_linkedin_id(context_url) and self._check_picture_url(pic_url):
-                priority = filter(None, [pic_url, thumbnail])
+            priority = filter(None, [pic_url, thumbnail])
+
+            if self._check_linkedin_id(context_url) and \
+                    self._check_picture_url(pic_url) and \
+                    linkedin_id not in img_dict:
                 for url in priority:
                     if self._check_url_exists(url):
-                        linkedin_id = self.clean_id(context_url)
-                        img_dict[linkedin_id] = pic_url
+                        img_dict[linkedin_id] = url
                         break
+
         return img_dict
 
     def search(self, params: dict) -> dict:
@@ -58,3 +62,9 @@ class ProfilePicture(object):
         res = res.get("items",[])
         res = self._extract_linkedin_results(res)
         return res
+
+if __name__ == "__main__":
+    obj = ProfilePicture("AIzaSyDYxgxCD3EnmhZI_OyiQOJHv3BJbLnh8zE","6c4e2424c087c5f38")
+    import pdb;pdb.set_trace()
+    qq = obj.search({"q":"matt-eagleson-3871b380"})
+    print(qq)
