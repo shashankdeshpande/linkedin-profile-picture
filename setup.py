@@ -14,7 +14,7 @@ setup(
     url="https://github.com/shashankdeshpande/linkedin",
     install_requires=[
         "re",
-        "google-api-python-client"
-        ]
+        "requests"
+        ],
     packages=find_packages()
     )
