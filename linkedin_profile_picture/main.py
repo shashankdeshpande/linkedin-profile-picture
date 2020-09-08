@@ -41,19 +41,14 @@ class ProfilePicture(object):
         img_dict = {}
         for i in res:
             pic_url = i.get("link","")
-            thumbnail = i.get("image",{}).get("thumbnailLink","")
             context_url = i.get("image",{}).get("contextLink","")
             linkedin_id = self.clean_id(context_url)
 
-            priority = filter(None, [pic_url, thumbnail])
-
             if self._check_linkedin_id(context_url) and \
                     self._check_picture_url(pic_url) and \
+                    self._check_url_exists(pic_url) and \
                     linkedin_id not in img_dict:
-                for url in priority:
-                    if self._check_url_exists(url):
-                        img_dict[linkedin_id] = url
-                        break
+                img_dict[linkedin_id] = pic_url
 
         return img_dict
 
