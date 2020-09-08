@@ -1,5 +1,11 @@
 
+
 # LinkedIn Profile Picture Search
+## [Introduction](#Introduction)
+
+I wanted to get profile picture of a LinkedIn user by using his/her linkedin id. I have earlier created this [github repository](https://github.com/shashankdeshpande/linkedin) which extract publically available profile data including profile picture and other details such as experience, education etc.
+But due to restrictions by LinkedIn, it was not able to login on remote server in order to extract profile data. So, I decided to fetch profile pictures that are available through google image search. This method is not able to extract profile picture for all the users due to user's privacy settings and google's algorithm behind image search but, we can get few profile pictures without logging in.
+
 ## [Prerequisites](#prerequisites)
 
 To be able to use this library, you need to enable Google Custom Search API, generate API key credentials and set a project:
