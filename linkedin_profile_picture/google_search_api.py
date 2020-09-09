@@ -8,11 +8,9 @@ class GoogleSearchAPI:
     def __init__(self, key: str, cx: str):
         self._cx = cx
         self._key = key
-        self._api_url = "https://www.googleapis.com/customsearch/v1"
+        self._api_url = "https://www.googleapis.com/customsearch/v1/siterestrict"
         self._params = {
             "num": 10,
-            "searchType": "image",
-            "imgType": "face"
             }
 
     def _hit_api(self, params):
