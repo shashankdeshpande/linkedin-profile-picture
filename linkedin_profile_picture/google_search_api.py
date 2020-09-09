@@ -11,8 +11,7 @@ class GoogleSearchAPI:
         self._api_url = "https://www.googleapis.com/customsearch/v1"
         self._params = {
             "num": 10,
-            "searchType": "image",
-            "imgType": "face"
+            "searchType": "image"
             }
 
     def _hit_api(self, params):
