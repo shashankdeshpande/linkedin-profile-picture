@@ -12,7 +12,7 @@ To be able to use this library, you need to enable Google Custom Search API, gen
  -   Visit [https://console.developers.google.com/apis/credentials](https://console.developers.google.com/apis/credentials) and generate API key credentials for your project.
  -   Visit [https://cse.google.com/cse/all](https://cse.google.com/cse/all) and in the web form where you create/edit your custom search engine. 
 - Enable "Image search" and disable "Search the entire web" option.
-- Add specific page url as [\*.linkedin.com/in/\*]() in "Sites to search" option.
+- Add specific page url as "\*.linkedin.com/in/\*" in "Sites to search" option.
 
 After setting up your Google developers account and project, you should have been provided with developers API key and project CX.
 
