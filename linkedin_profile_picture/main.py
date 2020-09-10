@@ -57,8 +57,8 @@ class ProfilePicture(object):
                 break
         return link
 
-    def search(self, params: dict) -> object:
-        linkedin_id = self.extract_id(params.get("q",""))
-        api_resp = self._api_obj._hit_api(params)
+    def search(self, link: str) -> object:
+        linkedin_id = self.extract_id(link)
+        api_resp = self._api_obj._hit_api(linkedin_id)
         api_resp.link = self._extract_profile_picture(linkedin_id, api_resp._search_results)
         return api_resp

@@ -8,24 +8,25 @@ class GoogleSearchAPI:
     def __init__(self, key: str, cx: str):
         self._cx = cx
         self._key = key
-        self._api_url = "https://www.googleapis.com/customsearch/v1/siterestrict"
+        self._api_url = "https://www.googleapis.com/customsearch/v1"
         self._params = {
             "num": 10,
+            "cx": self._cx,
+            "key": self._key
             }
 
-    def _hit_api(self, params):
+    def _hit_api(self, linkedin_id: str) -> object:
         api_response = APIResponse()
         try:
-            params = dict(params, **self._params)
-            params["cx"] = self._cx
-            params["key"] = self._key
+            params = self._params
+            params["exactTerms"] = f"/in/{linkedin_id}"
             resp = requests.get(self._api_url, params=params)
             api_response = self._create_api_response(resp)
         except Exception as e:
             logger.info(f"Error in _hit_api: {e}", exc_info=True)
         return api_response
 
-    def _create_api_response(self, resp):
+    def _create_api_response(self, resp: object) -> object:
         link = ""
         results = []
         error = None
