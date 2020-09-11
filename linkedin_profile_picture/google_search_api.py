@@ -21,12 +21,12 @@ class GoogleSearchAPI:
             params = self._params
             params["exactTerms"] = f"/in/{linkedin_id}"
             resp = requests.get(self._api_url, params=params)
-            api_response = self._create_api_response(resp)
+            api_response = self._create_api_response(linkedin_id, resp)
         except Exception as e:
             logger.info(f"Error in _hit_api: {e}", exc_info=True)
         return api_response
 
-    def _create_api_response(self, resp: object) -> object:
+    def _create_api_response(self, linkedin_id: str, resp: object) -> object:
         link = ""
         results = []
         error = None
@@ -36,16 +36,18 @@ class GoogleSearchAPI:
             results = results.get("items",[])
         else:
             error = resp.json()
-        return APIResponse(results, status_code, link, error)
+        return APIResponse(results, linkedin_id, status_code, link, error)
 
 class APIResponse:
 
     def __init__(self,
             _search_results=[],
+            linkedin_id = "",
             status_code=400,
             link="",
             error=None):
         self._search_results = _search_results
+        self.linkedin_id = linkedin_id
         self.status_code = status_code
         self.link = link
         self.error = error

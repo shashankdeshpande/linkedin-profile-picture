@@ -1,6 +1,6 @@
 import re
 import requests
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 from .google_search_api import GoogleSearchAPI
 
 class ProfilePicture(object):
@@ -20,6 +20,7 @@ class ProfilePicture(object):
         if match:
             linkedin_id = match[0].strip()
         linkedin_id = linkedin_id.strip("/")
+        linkedin_id = unquote(linkedin_id)
         return linkedin_id
 
     def _check_picture_url(self, link: str) -> bool:
@@ -61,4 +62,5 @@ class ProfilePicture(object):
         linkedin_id = self.extract_id(link)
         api_resp = self._api_obj._hit_api(linkedin_id)
         api_resp.link = self._extract_profile_picture(linkedin_id, api_resp._search_results)
+        api_resp.linkedin_id = linkedin_id
         return api_resp
