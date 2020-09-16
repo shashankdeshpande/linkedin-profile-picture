@@ -46,10 +46,11 @@ class ProfilePicture(object):
                 metatags = i.get("pagemap",{}).get("metatags", [])
                 metatags = sum(list(map(lambda mt: list(dict(filter(lambda x: "image" in x[1], mt.items())).values()), metatags)), [])
 
-                cse_imgs = i.get("pagemap",{}).get("cse_image", [])
-                cse_imgs = list(filter(None, map(lambda x:x.get("src"), cse_imgs)))
+                # cse_imgs = i.get("pagemap",{}).get("cse_image", [])
+                # cse_imgs = list(filter(None, map(lambda x:x.get("src"), cse_imgs)))
 
-                pic_urls = set(metatags + cse_imgs)
+                # pic_urls = set(metatags + cse_imgs)
+                pic_urls = set(metatags)
                 for url in pic_urls:
                     if self._check_picture_url(url) and self._check_url_exists(url):
                         link = url
